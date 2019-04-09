@@ -5,6 +5,7 @@ module.exports = {
   extends: 'airbnb',
   globals: {
     it: false,
+    fetch: false,
   },
   parser: 'babel-eslint',
   parserOptions: {
@@ -21,12 +22,13 @@ module.exports = {
       "error",
       "always-multiline"
     ],
+    "import/prefer-default-export": "off",
     "quotes": [
       "error",
       "double"
     ],
     "react/jsx-filename-extension": [
-      1,
+      "warn",
       {
         "extensions": [
           ".js",
@@ -45,4 +47,15 @@ module.exports = {
       "global"
     ]
   },
+  overrides: [
+    {
+      "files": [
+        "src/sagas/*.js",
+        "src/sagas/**/*.js"
+      ],
+      "rules": {
+        "func-names": "off"
+      }
+    }
+  ]
 };
