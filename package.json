@@ -3,8 +3,12 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "lint": "eslint ./src ./__tests__",
+    "log-android": "react-native log-android",
+    "log-ios": "react-native log-ios",
     "test": "jest"
   },
   "dependencies": {
