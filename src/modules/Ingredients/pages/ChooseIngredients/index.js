@@ -2,7 +2,7 @@ import {
   Text,
   View,
 } from "react-native";
-import { Actions } from 'react-native-router-flux';
+import { Actions } from "react-native-router-flux";
 import PropTypes from "prop-types";
 import React from "react";
 import { connect } from "react-redux";
@@ -20,7 +20,7 @@ const Test = ({ onRequestIngredients, onRequestSnacks }) => {
         style={styles.welcome}
         onPress={() => Actions.chooseSandwich()}
       >
-        Scarlet Screen
+        Ingredients
       </Text>
     </View>
   );

@@ -1,15 +1,15 @@
+import { GET_SNACKS, SET_CHOOSED_SANDWICH } from "../constants";
 import {
   apiErrorActionType,
   apiRequestActionType,
   apiSuccessActionType,
 } from "../utils";
 
-import { GET_SNACKS } from "../constants";
-
 const initialState = {
+  choosedSandwich: null,
+  error: null,
+  items: [],
   loading: false,
-  snacks: [],
-  error: {},
 };
 
 export default (state = initialState, action) => {
@@ -28,7 +28,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        snacks: payload.snacks,
+        items: payload.snacks,
       };
     }
     case apiErrorActionType(GET_SNACKS): {
@@ -36,6 +36,12 @@ export default (state = initialState, action) => {
         ...state,
         loading: false,
         error: payload.error,
+      };
+    }
+    case SET_CHOOSED_SANDWICH: {
+      return {
+        ...state,
+        choosedSandwich: payload.sandwich,
       };
     }
     default:

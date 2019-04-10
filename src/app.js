@@ -1,7 +1,9 @@
-import { Actions, Router, Scene, Stack } from "react-native-router-flux";
+import {
+  Router, Scene, Stack,
+} from "react-native-router-flux";
 import { Provider } from "react-redux";
 import React from "react";
-import ChooseSandwich from "./modules/Sandwiches/pages/ChooseSandwich"
+import ChooseSandwich from "./modules/Sandwiches/pages/ChooseSandwich";
 import ChooseIngredients from "./modules/Ingredients/pages/ChooseIngredients";
 import storeBuilder from "./store";
 

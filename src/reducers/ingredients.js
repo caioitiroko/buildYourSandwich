@@ -8,7 +8,7 @@ import { GET_INGREDIENTS } from "../constants";
 
 const initialState = {
   loading: false,
-  ingredients: [],
+  items: [],
   error: {},
 };
 
@@ -28,7 +28,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        ingredients: payload.ingredients,
+        items: payload.ingredients,
       };
     }
     case apiErrorActionType(GET_INGREDIENTS): {

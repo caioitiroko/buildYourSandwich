@@ -1,41 +1,62 @@
+import {
+  SafeAreaView,
+  ScrollView,
+} from "react-native";
+import {
+  branch, compose, pure, renderComponent, withHandlers,
+} from "recompose";
+
 import PropTypes from "prop-types";
 import React from "react";
-import {
-  View,
-  Text,
-} from "react-native";
 import { connect } from "react-redux";
-import { Actions } from 'react-native-router-flux';
-
-import { requestIngredients, requestSnacks } from "../../../../actions";
+import lifecycle from "react-pure-lifecycle";
+import { prop } from "ramda";
+import SandwichList from "../../components/SandwichList";
+import RedSpinner from "../../components/RedSpinner";
+import { requestSnacks, setChoosedSandwich } from "../../../../actions";
+import { getError, getSnacks, isLoading } from "../../selectors";
 import styles from "./style";
 
-const Test = ({ onRequestIngredients, onRequestSnacks }) => {
-  onRequestIngredients();
-  onRequestSnacks();
+const enhance = compose(
+  pure,
+  connect(
+    state => ({
+      sandwiches: getSnacks(state),
+      isLoading: isLoading(state),
+      error: getError(state),
+    }),
+    dispatch => ({
+      onRequestSnacks: () => dispatch(requestSnacks()),
+      onSetChoosedSandwich: sandwich => dispatch(setChoosedSandwich(sandwich)),
+    })
+  ),
+  withHandlers({
+    onChooseSandwich: ({ onSetChoosedSandwich }) => sandwich => onSetChoosedSandwich(sandwich),
+  }),
+  lifecycle({
+    componentDidMount: ({ onRequestSnacks }) => onRequestSnacks(),
+  }),
+  branch(
+    prop("isLoading"),
+    renderComponent(() => <RedSpinner />)
+  ),
+);
 
-  return (
-    <View style={styles.container}>
-      <Text
-        style={styles.welcome}
-        onPress={() => Actions.chooseIngredients()}
-      >
-        Scarlet Screen
-      </Text>
-    </View>
-  );
+const ChooseSandwich = ({ onChooseSandwich, sandwiches }) => (
+  <SafeAreaView style={styles.container}>
+    <ScrollView>
+      <SandwichList sandwiches={sandwiches} onChooseSandwich={onChooseSandwich} />
+    </ScrollView>
+  </SafeAreaView>
+);
+
+ChooseSandwich.propTypes = {
+  sandwiches: PropTypes.arrayOf(PropTypes.object),
+  onChooseSandwich: PropTypes.func.isRequired,
 };
 
-Test.propTypes = {
-  onRequestIngredients: PropTypes.func.isRequired,
-  onRequestSnacks: PropTypes.func.isRequired,
+ChooseSandwich.defaultProps = {
+  sandwiches: [],
 };
 
-const mapDispatchToProps = dispatch => ({
-  onRequestIngredients: () => dispatch(requestIngredients()),
-  onRequestSnacks: () => dispatch(requestSnacks()),
-});
-
-const enhance = connect(null, mapDispatchToProps);
-
-export default enhance(Test);
+export default enhance(ChooseSandwich);
