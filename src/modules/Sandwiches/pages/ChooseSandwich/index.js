@@ -17,7 +17,7 @@ import { connect } from "react-redux";
 import lifecycle from "react-pure-lifecycle";
 import { prop } from "ramda";
 import SandwichList from "../../components/SandwichList";
-import RedSpinner from "../../components/RedSpinner";
+import RedSpinner from "../../../../components/RedSpinner";
 import { requestSnacks, setSelectedSandwich } from "../../../../actions";
 import { getError, getSnacks, isLoading } from "../../selectors";
 import styles from "./style";
