@@ -4,11 +4,15 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "android-bundle": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/",
+    "build-android": "yarn run android-bundle && cd android && ./gradlew -p android buildYourSandwichRelease && cd -",
     "ios": "react-native run-ios",
+    "ios-bundle": "react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "lint": "eslint ./src ./__tests__",
     "log-android": "react-native log-android",
     "log-ios": "react-native log-ios",
+    "postinstall": "node ./scripts/android-release-gradle-fix.js",
     "test": "jest"
   },
   "dependencies": {
