@@ -9,6 +9,8 @@ import {
   sum,
 } from "ramda"
 
+import { roundToTwo } from "../../../utils";
+
 const hasLightDiscount = items => {
   const lettuce = find(propEq('name', 'Alface'), items) || {};
   const bacon = find(propEq('name', 'Bacon'), items) || {};
@@ -41,5 +43,5 @@ const applyQuantityDiscount = item =>
 export const getBill = items => {
   const total = sum(items.map(item => applyQuantityDiscount(item) * item.price));
 
-  return hasLightDiscount(items) ? total * 0.9 : total;
+  return hasLightDiscount(items) ? roundToTwo(total * 0.9) : total;
 }
