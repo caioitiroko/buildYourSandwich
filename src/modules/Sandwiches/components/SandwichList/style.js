@@ -6,4 +6,9 @@ export default StyleSheet.create({
     backgroundColor: "#FFF",
     padding: 20,
   },
+  title: {
+    color: "#000",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
 });

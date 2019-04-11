@@ -1,41 +1,73 @@
 import {
-  Text,
-  View,
+  SafeAreaView,
+  ScrollView,
 } from "react-native";
-import { Actions } from "react-native-router-flux";
+import { addIngredient, removeIngredient, requestIngredients } from "../../../../actions";
+import {
+  branch,
+  compose,
+  pure,
+  renderComponent,
+  withHandlers,
+} from "recompose";
+import { getError, getIngredients, isLoading } from "../../selectors";
+
+import IngredientList from "../../components/IngredientList";
 import PropTypes from "prop-types";
 import React from "react";
+import RedSpinner from "../../components/RedSpinner";
 import { connect } from "react-redux";
-
-import { requestIngredients, requestSnacks } from "../../../../actions";
+import lifecycle from "react-pure-lifecycle";
+import { prop } from "ramda";
 import styles from "./style";
 
-const Test = ({ onRequestIngredients, onRequestSnacks }) => {
-  onRequestIngredients();
-  onRequestSnacks();
+const enhance = compose(
+  pure,
+  connect(
+    state => ({
+      ingredients: getIngredients(state),
+      isLoading: isLoading(state),
+      error: getError(state),
+    }),
+    dispatch => ({
+      onRequestIngredients: () => dispatch(requestIngredients()),
+      onAddIngredient: ingredient => dispatch(addIngredient(ingredient)),
+      onRemoveIngredient: ingredient => dispatch(removeIngredient(ingredient)),
+    })
+  ),
+  withHandlers({
+    onAddIngredient: ({ onAddIngredient }) => ingredient => onAddIngredient(ingredient),
+    onRemoveIngredient: ({ onRemoveIngredient }) => ingredient => onRemoveIngredient(ingredient),
+  }),
+  lifecycle({
+    componentDidMount: ({ onRequestIngredients }) => onRequestIngredients(),
+  }),
+  branch(
+    prop("isLoading"),
+    renderComponent(() => <RedSpinner />)
+  ),
+);
 
-  return (
-    <View style={styles.container}>
-      <Text
-        style={styles.welcome}
-        onPress={() => Actions.chooseSandwich()}
-      >
-        Ingredients
-      </Text>
-    </View>
-  );
+const ChooseIngredients = ({ onAddIngredient, onRemoveIngredient, ingredients }) => (
+  <SafeAreaView style={styles.container}>
+    <ScrollView>
+      <IngredientList
+        ingredients={ingredients}
+        onAddIngredient={onAddIngredient}
+        onRemoveIngredient={onRemoveIngredient}
+      />
+    </ScrollView>
+  </SafeAreaView>
+);
+
+ChooseIngredients.propTypes = {
+  ingredients: PropTypes.arrayOf(PropTypes.object),
+  onAddIngredient: PropTypes.func.isRequired,
+  onRemoveIngredient: PropTypes.func.isRequired,
 };
 
-Test.propTypes = {
-  onRequestIngredients: PropTypes.func.isRequired,
-  onRequestSnacks: PropTypes.func.isRequired,
+ChooseIngredients.defaultProps = {
+  ingredients: [],
 };
 
-const mapDispatchToProps = dispatch => ({
-  onRequestIngredients: () => dispatch(requestIngredients()),
-  onRequestSnacks: () => dispatch(requestSnacks()),
-});
-
-const enhance = connect(null, mapDispatchToProps);
-
-export default enhance(Test);
+export default enhance(ChooseIngredients);

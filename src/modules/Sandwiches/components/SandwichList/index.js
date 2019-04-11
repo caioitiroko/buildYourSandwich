@@ -11,7 +11,7 @@ import styles from "./style";
 
 const SandwichList = ({ sandwiches, onChooseSandwich }) => (
   <View style={styles.container}>
-    <Text>Escolha seu lanche</Text>
+    <Text style={styles.title}>Escolha seu lanche</Text>
     {sandwiches.map(sandwich => (
       <SandwichCard
         key={sandwich.id}

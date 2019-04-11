@@ -1,3 +1,5 @@
+export * from './array';
+
 export const apiRequestActionType = endpoint => `${endpoint}_REQUEST`;
 
 export const apiSuccessActionType = endpoint => `${endpoint}_SUCCESS`;

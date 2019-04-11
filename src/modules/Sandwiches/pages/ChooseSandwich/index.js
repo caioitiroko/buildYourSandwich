@@ -3,9 +3,14 @@ import {
   ScrollView,
 } from "react-native";
 import {
-  branch, compose, pure, renderComponent, withHandlers,
+  branch,
+  compose,
+  pure,
+  renderComponent,
+  withHandlers,
 } from "recompose";
 
+import { Actions } from "react-native-router-flux";
 import PropTypes from "prop-types";
 import React from "react";
 import { connect } from "react-redux";
@@ -13,7 +18,7 @@ import lifecycle from "react-pure-lifecycle";
 import { prop } from "ramda";
 import SandwichList from "../../components/SandwichList";
 import RedSpinner from "../../components/RedSpinner";
-import { requestSnacks, setChoosedSandwich } from "../../../../actions";
+import { requestSnacks, setSelectedSandwich } from "../../../../actions";
 import { getError, getSnacks, isLoading } from "../../selectors";
 import styles from "./style";
 
@@ -27,11 +32,14 @@ const enhance = compose(
     }),
     dispatch => ({
       onRequestSnacks: () => dispatch(requestSnacks()),
-      onSetChoosedSandwich: sandwich => dispatch(setChoosedSandwich(sandwich)),
+      onSetSelectedSandwich: sandwich => dispatch(setSelectedSandwich(sandwich)),
     })
   ),
   withHandlers({
-    onChooseSandwich: ({ onSetChoosedSandwich }) => sandwich => onSetChoosedSandwich(sandwich),
+    onChooseSandwich: ({ onSetSelectedSandwich }) => (sandwich) => {
+      onSetSelectedSandwich(sandwich);
+      Actions.chooseIngredients();
+    },
   }),
   lifecycle({
     componentDidMount: ({ onRequestSnacks }) => onRequestSnacks(),

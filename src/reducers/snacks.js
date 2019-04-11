@@ -1,4 +1,4 @@
-import { GET_SNACKS, SET_CHOOSED_SANDWICH } from "../constants";
+import { GET_SNACKS, SET_SELECTED_SANDWICH } from "../constants";
 import {
   apiErrorActionType,
   apiRequestActionType,
@@ -6,7 +6,7 @@ import {
 } from "../utils";
 
 const initialState = {
-  choosedSandwich: null,
+  selectedSandwich: null,
   error: null,
   items: [],
   loading: false,
@@ -38,10 +38,10 @@ export default (state = initialState, action) => {
         error: payload.error,
       };
     }
-    case SET_CHOOSED_SANDWICH: {
+    case SET_SELECTED_SANDWICH: {
       return {
         ...state,
-        choosedSandwich: payload.sandwich,
+        selectedSandwich: payload.sandwich,
       };
     }
     default:

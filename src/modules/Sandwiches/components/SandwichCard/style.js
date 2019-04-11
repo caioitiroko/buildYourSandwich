@@ -19,6 +19,6 @@ export default StyleSheet.create({
     fontWeight: "bold",
     textShadowColor: "#000",
     textShadowRadius: 1,
-    textShadowOffset: { width: 1, height: 1 }
-  }
+    textShadowOffset: { width: 1, height: 1 },
+  },
 });

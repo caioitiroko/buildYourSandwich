@@ -1,4 +1,4 @@
-import { GET_SNACKS, SET_CHOOSED_SANDWICH } from "../constants";
+import { GET_SNACKS, SET_SELECTED_SANDWICH } from "../constants";
 import {
   apiErrorActionType,
   apiRequestActionType,
@@ -23,8 +23,8 @@ export const requestSnacksError = error => ({
   },
 });
 
-export const setChoosedSandwich = sandwich => ({
-  type: SET_CHOOSED_SANDWICH,
+export const setSelectedSandwich = sandwich => ({
+  type: SET_SELECTED_SANDWICH,
   payload: {
     sandwich,
   },
