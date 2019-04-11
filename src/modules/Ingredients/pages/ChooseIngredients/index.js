@@ -16,6 +16,7 @@ import IngredientList from "../../components/IngredientList";
 import PropTypes from "prop-types";
 import React from "react";
 import RedSpinner from "../../components/RedSpinner";
+import StaticFooter from "../../components/StaticFooter";
 import { connect } from "react-redux";
 import lifecycle from "react-pure-lifecycle";
 import { prop } from "ramda";
@@ -57,6 +58,7 @@ const ChooseIngredients = ({ onAddIngredient, onRemoveIngredient, ingredients })
         onRemoveIngredient={onRemoveIngredient}
       />
     </ScrollView>
+    <StaticFooter />
   </SafeAreaView>
 );
 
