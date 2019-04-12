@@ -51,7 +51,7 @@ describe("Testing discount logic", () => {
   });
 
   it("With meat quantity discount", () => {
-    const itemsA = [
+    const itemA = [
       {
         id: "3", name: "Hambúrguer de carne", commonIdentifier: COMMON_IDENTIFIERS.MEAT_BURGER, price: 3, quantity: 3,
       },
@@ -59,7 +59,7 @@ describe("Testing discount logic", () => {
         id: "5", name: "Queijo", commonIdentifier: COMMON_IDENTIFIERS.CHEESE, price: 1.5, quantity: 1,
       },
     ];
-    const itemsB = [
+    const itemB = [
       {
         id: "3", name: "Hambúrguer de carne", commonIdentifier: COMMON_IDENTIFIERS.MEAT_BURGER, price: 3, quantity: 6,
       },
@@ -67,7 +67,7 @@ describe("Testing discount logic", () => {
         id: "5", name: "Queijo", commonIdentifier: COMMON_IDENTIFIERS.CHEESE, price: 1.5, quantity: 1,
       },
     ];
-    const itemsC = [
+    const itemC = [
       {
         id: "3", name: "Hambúrguer de carne", commonIdentifier: COMMON_IDENTIFIERS.MEAT_BURGER, price: 3, quantity: 10,
       },
@@ -75,13 +75,13 @@ describe("Testing discount logic", () => {
         id: "5", name: "Queijo", commonIdentifier: COMMON_IDENTIFIERS.CHEESE, price: 1.5, quantity: 1,
       },
     ];
-    expect(getBill(itemsA)).toEqual(7.5);
-    expect(getBill(itemsB)).toEqual(13.5);
-    expect(getBill(itemsC)).toEqual(22.5);
+    expect(getBill(itemA)).toEqual(7.5);
+    expect(getBill(itemB)).toEqual(13.5);
+    expect(getBill(itemC)).toEqual(22.5);
   });
 
   it("With cheese quantity discount", () => {
-    const itemsA = [
+    const itemA = [
       {
         id: "3", name: "Hambúrguer de carne", commonIdentifier: COMMON_IDENTIFIERS.MEAT_BURGER, price: 3, quantity: 1,
       },
@@ -89,7 +89,7 @@ describe("Testing discount logic", () => {
         id: "5", name: "Queijo", commonIdentifier: COMMON_IDENTIFIERS.CHEESE, price: 1.5, quantity: 3,
       },
     ];
-    const itemsB = [
+    const itemB = [
       {
         id: "3", name: "Hambúrguer de carne", commonIdentifier: COMMON_IDENTIFIERS.MEAT_BURGER, price: 3, quantity: 1,
       },
@@ -97,7 +97,7 @@ describe("Testing discount logic", () => {
         id: "5", name: "Queijo", commonIdentifier: COMMON_IDENTIFIERS.CHEESE, price: 1.5, quantity: 6,
       },
     ];
-    const itemsC = [
+    const itemC = [
       {
         id: "3", name: "Hambúrguer de carne", commonIdentifier: COMMON_IDENTIFIERS.MEAT_BURGER, price: 3, quantity: 1,
       },
