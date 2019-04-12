@@ -5,7 +5,6 @@ import {
 import React from "react";
 import styles from "./style";
 
-
 const RedSpinner = () => (
   <SafeAreaView style={styles.container}>
     <ActivityIndicator size="large" color="#F00" />

@@ -6,7 +6,11 @@ import {
   GET_INGREDIENTS,
   INGREDIENTS_ENDPOINT,
 } from "../constants";
-import { apiRequestActionType } from "../utils";
+import {
+  warnUser,
+  apiRequestActionType,
+  apiErrorActionType,
+} from "../utils";
 import {
   requestIngredientsSuccess,
   requestIngredientsError,
@@ -24,6 +28,11 @@ function* fetchIngredients() {
   });
 }
 
+function* catchIngredientsErrors() {
+  yield takeLatest(apiErrorActionType(GET_INGREDIENTS), () => warnUser("Erro ao consultar ingredientes no servidor"));
+}
+
 export default function* featureSaga() {
   yield fork(fetchIngredients);
+  yield fork(catchIngredientsErrors);
 }

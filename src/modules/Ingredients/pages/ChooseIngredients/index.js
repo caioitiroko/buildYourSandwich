@@ -27,6 +27,8 @@ import ArrowLeft from "../../../../../images/simple-arrow-left.png";
 import { getError, getIngredients, isLoading } from "../../selectors";
 import { addIngredient, removeIngredient, requestIngredients } from "../../../../actions";
 import styles from "./style";
+import { isNotNil } from "../../../../utils";
+import Reloader from "../../../../components/Reloader";
 
 const enhance = compose(
   pure,
@@ -54,6 +56,10 @@ const enhance = compose(
     prop("isLoading"),
     renderComponent(() => <RedSpinner />)
   ),
+  branch(
+    ({ error }) => isNotNil(error),
+    renderComponent(({ onRequestIngredients }) => <Reloader onReload={onRequestIngredients} />)
+  )
 );
 
 const ChooseIngredients = ({

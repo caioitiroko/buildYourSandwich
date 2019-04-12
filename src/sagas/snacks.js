@@ -6,7 +6,11 @@ import {
   GET_SNACKS,
   SNACKS_ENDPOINT,
 } from "../constants";
-import { apiRequestActionType } from "../utils";
+import {
+  apiRequestActionType,
+  apiErrorActionType,
+  warnUser,
+} from "../utils";
 import {
   requestSnacksSuccess,
   requestSnacksError,
@@ -24,6 +28,11 @@ function* fetchSnacks() {
   });
 }
 
+function* catchSnacksErrors() {
+  yield takeLatest(apiErrorActionType(GET_SNACKS), () => warnUser("Erro ao consultar lanches no servidor"));
+}
+
 export default function* featureSaga() {
   yield fork(fetchSnacks);
+  yield fork(catchSnacksErrors);
 }

@@ -16,6 +16,7 @@
     "test": "jest"
   },
   "pre-push": [
+    "test",
     "lint"
   ],
   "dependencies": {

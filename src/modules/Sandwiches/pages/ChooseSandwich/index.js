@@ -22,7 +22,9 @@ import SandwichList from "../../components/SandwichList";
 import RedSpinner from "../../../../components/RedSpinner";
 import { requestSnacks, setSelectedSandwich } from "../../../../actions";
 import { getError, getSnacks, isLoading } from "../../selectors";
+import { isNotNil } from "../../../../utils";
 import styles from "./style";
+import Reloader from "../../../../components/Reloader";
 
 const enhance = compose(
   pure,
@@ -50,6 +52,10 @@ const enhance = compose(
     prop("isLoading"),
     renderComponent(() => <RedSpinner />)
   ),
+  branch(
+    ({ error }) => isNotNil(error),
+    renderComponent(({ onRequestSnacks }) => <Reloader onReload={onRequestSnacks} />)
+  )
 );
 
 const ChooseSandwich = ({ onChooseSandwich, sandwiches }) => (

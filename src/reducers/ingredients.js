@@ -34,6 +34,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+        error: null,
       };
     }
     case apiSuccessActionType(GET_INGREDIENTS): {
