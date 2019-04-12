@@ -15,6 +15,9 @@
     "postinstall": "node ./scripts/android-release-gradle-fix.js",
     "test": "jest"
   },
+  "pre-push": [
+    "lint"
+  ],
   "dependencies": {
     "babel-eslint": "^10.0.1",
     "prop-types": "^15.7.2",
@@ -40,6 +43,7 @@
     "eslint-plugin-react": "^7.12.4",
     "jest": "^24.7.1",
     "metro-react-native-babel-preset": "^0.53.1",
+    "pre-push": "^0.1.1",
     "react-test-renderer": "16.8.3"
   },
   "jest": {
