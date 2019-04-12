@@ -44,5 +44,5 @@ export default StyleSheet.create({
     borderRadius: 8,
     borderWidth: 0.5,
     justifyContent: "center",
-  }
+  },
 });

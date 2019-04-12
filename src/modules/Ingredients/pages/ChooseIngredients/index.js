@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { addIngredient, removeIngredient, requestIngredients } from "../../../../actions";
 import {
   branch,
   compose,
@@ -14,18 +13,19 @@ import {
   renderComponent,
   withHandlers,
 } from "recompose";
-import { getError, getIngredients, isLoading } from "../../selectors";
 
 import { Actions } from "react-native-router-flux";
-import ArrowLeft from "../../../../../images/simple-arrow-left.png"
-import IngredientList from "../../components/IngredientList";
 import PropTypes from "prop-types";
 import React from "react";
-import RedSpinner from "../../../../components/RedSpinner";
-import StaticFooter from "../../components/StaticFooter";
 import { connect } from "react-redux";
 import lifecycle from "react-pure-lifecycle";
 import { prop } from "ramda";
+import StaticFooter from "../../components/StaticFooter";
+import RedSpinner from "../../../../components/RedSpinner";
+import IngredientList from "../../components/IngredientList";
+import ArrowLeft from "../../../../../images/simple-arrow-left.png";
+import { getError, getIngredients, isLoading } from "../../selectors";
+import { addIngredient, removeIngredient, requestIngredients } from "../../../../actions";
 import styles from "./style";
 
 const enhance = compose(
@@ -56,7 +56,9 @@ const enhance = compose(
   ),
 );
 
-const ChooseIngredients = ({ onAddIngredient, onBack, onRemoveIngredient, ingredients }) => (
+const ChooseIngredients = ({
+  onAddIngredient, onBack, onRemoveIngredient, ingredients,
+}) => (
   <SafeAreaView style={styles.container}>
     <View style={styles.header}>
       <TouchableOpacity onPress={onBack} style={styles.backButtom}>

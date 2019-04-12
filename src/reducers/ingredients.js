@@ -1,4 +1,9 @@
 import {
+  dec,
+  inc,
+  when,
+} from "ramda";
+import {
   ADD_INGREDIENT,
   GET_INGREDIENTS,
   REMOVE_INGREDIENT,
@@ -11,12 +16,6 @@ import {
   findItem,
   updateValueOnItem,
 } from "../utils";
-import {
-  dec,
-  inc,
-  pathOr,
-  when,
-} from "ramda";
 
 const initialState = {
   loading: false,
@@ -62,10 +61,10 @@ export default (state = initialState, action) => {
 
       const { id, quantity } = findItem(ingredient.id, state.ingredientsSelected) || {};
 
-      const newSelectedIngredients = id ?
-        updateValueOnItem(
+      const newSelectedIngredients = id
+        ? updateValueOnItem(
           id,
-          'quantity',
+          "quantity",
           inc(quantity),
           state.ingredientsSelected
         ) : [
@@ -73,11 +72,11 @@ export default (state = initialState, action) => {
           {
             ...ingredient,
             quantity: 1,
-          }
+          },
         ];
       return {
         ...state,
-        ingredientsSelected: newSelectedIngredients
+        ingredientsSelected: newSelectedIngredients,
       };
     }
     case REMOVE_INGREDIENT: {
@@ -85,17 +84,17 @@ export default (state = initialState, action) => {
 
       const { id, quantity } = findItem(ingredient.id, state.ingredientsSelected) || {};
 
-      const newSelectedIngredients = id ?
-        updateValueOnItem(
+      const newSelectedIngredients = id
+        ? updateValueOnItem(
           id,
-          'quantity',
+          "quantity",
           when(a => a > 0, dec)(quantity),
           state.ingredientsSelected
         ) : state.ingredientsSelected;
 
       return {
         ...state,
-        ingredientsSelected: newSelectedIngredients
+        ingredientsSelected: newSelectedIngredients,
       };
     }
     default:

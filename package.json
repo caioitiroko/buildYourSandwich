@@ -9,7 +9,7 @@
     "ios": "react-native run-ios",
     "ios-bundle": "react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios",
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "lint": "eslint ./src ./__tests__",
+    "lint": "eslint ./src",
     "log-android": "react-native log-android",
     "log-ios": "react-native log-ios",
     "postinstall": "node ./scripts/android-release-gradle-fix.js",

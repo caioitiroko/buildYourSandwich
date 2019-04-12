@@ -6,6 +6,8 @@ module.exports = {
   globals: {
     it: false,
     fetch: false,
+    describe: false,
+    expect: false,
   },
   parser: 'babel-eslint',
   parserOptions: {

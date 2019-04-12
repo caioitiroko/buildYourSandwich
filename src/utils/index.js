@@ -1,6 +1,6 @@
-export * from './array';
+export * from "./array";
 
-export * from './number';
+export * from "./number";
 
 export const apiRequestActionType = endpoint => `${endpoint}_REQUEST`;
 

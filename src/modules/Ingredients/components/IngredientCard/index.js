@@ -10,21 +10,24 @@ import {
   withHandlers,
 } from "recompose";
 
-import ArrowBottom from "../../../../../images/arrow-bottom.png";
-import ArrowTop from "../../../../../images/arrow-top.png";
 import PropTypes from "prop-types";
 import React from "react";
+import ArrowBottom from "../../../../../images/arrow-bottom.png";
+import ArrowTop from "../../../../../images/arrow-top.png";
 import styles from "./style";
 
 const enhance = compose(
   pure,
   withHandlers({
     onAddIngredient: ({ onAddIngredient, ingredient }) => () => onAddIngredient(ingredient),
-    onRemoveIngredient: ({ onRemoveIngredient, ingredient }) => () => onRemoveIngredient(ingredient),
+    onRemoveIngredient:
+      ({ onRemoveIngredient, ingredient }) => () => onRemoveIngredient(ingredient),
   }),
 );
 
-const IngredientCard = ({ ingredient, quantity, onAddIngredient, onRemoveIngredient }) => (
+const IngredientCard = ({
+  ingredient, quantity, onAddIngredient, onRemoveIngredient,
+}) => (
   <View style={styles.container}>
     <View style={styles.ingredientInfo}>
       <Text style={styles.ingredientName}>{ingredient.name}</Text>

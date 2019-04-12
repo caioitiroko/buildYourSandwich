@@ -1,13 +1,10 @@
-import {
-  Text,
-  View,
-} from "react-native";
+import { View } from "react-native";
 import { compose, pure } from "recompose";
 
-import IngredientCard from "../IngredientCard";
 import PropTypes from "prop-types";
 import React from "react";
 import { connect } from "react-redux";
+import IngredientCard from "../IngredientCard";
 import { findItem } from "../../../../utils";
 import { getIngredientsSelected } from "../../selectors";
 import styles from "./style";
@@ -19,9 +16,11 @@ const enhance = compose(
   })),
 );
 
-const IngredientList = ({ ingredients, ingredientsSelected, onAddIngredient, onRemoveIngredient }) => (
+const IngredientList = ({
+  ingredients, ingredientsSelected, onAddIngredient, onRemoveIngredient,
+}) => (
   <View style={styles.container}>
-    {ingredients.map(ingredient => {
+    {ingredients.map((ingredient) => {
       const { quantity = 0 } = findItem(ingredient.id, ingredientsSelected) || {};
 
       return (
@@ -32,7 +31,7 @@ const IngredientList = ({ ingredients, ingredientsSelected, onAddIngredient, onR
           onAddIngredient={onAddIngredient}
           onRemoveIngredient={onRemoveIngredient}
         />
-      )
+      );
     })}
   </View>
 );

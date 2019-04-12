@@ -1,7 +1,5 @@
 import {
-  Image,
   Text,
-  TouchableOpacity,
   View,
 } from "react-native";
 import {
@@ -27,13 +25,14 @@ const enhance = compose(
   })),
 );
 
-const StaticFooter = ({ bill, onBack }) => (
+const StaticFooter = ({ bill }) => (
   <View style={styles.container}>
     <Text style={styles.bill}>{`Total: R$ ${bill}`}</Text>
   </View>
 );
 
 StaticFooter.propTypes = {
+  bill: PropTypes.number.isRequired,
 };
 
 export default enhance(StaticFooter);
