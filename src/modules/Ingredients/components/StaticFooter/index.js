@@ -3,8 +3,10 @@ import {
   View,
 } from "react-native";
 import {
+  branch,
   compose,
   pure,
+  renderNothing,
   withProps,
 } from "recompose";
 
@@ -16,6 +18,7 @@ import { getIngredientsSelected } from "../../selectors";
 import DiscountList from "../DiscountList";
 import styles from "./style";
 import { COMMON_IDENTIFIERS } from "../../../../constants";
+import { isEmpty } from "ramda";
 
 const enhance = compose(
   pure,
@@ -26,6 +29,7 @@ const enhance = compose(
     bill: getBill(ingredientsSelected),
     discounts: getDiscounts(ingredientsSelected),
   })),
+  branch(({ingredientsSelected}) => isEmpty(ingredientsSelected), renderNothing),
 );
 
 const StaticFooter = ({ bill, discounts }) => (
