@@ -13,7 +13,7 @@ import { COMMON_IDENTIFIERS } from "../../../constants";
 
 import { roundToTwo } from "../../../utils";
 
-const hasLightDiscount = items => {
+export const hasLightDiscount = items => {
   const lettuce = find(propEq('commonIdentifier', COMMON_IDENTIFIERS.LETTUCE), items) || {};
   const bacon = find(propEq('commonIdentifier', COMMON_IDENTIFIERS.BACON), items) || {};
 
@@ -27,19 +27,16 @@ const isMeat = propEq('commonIdentifier', COMMON_IDENTIFIERS.MEAT_BURGER);
 
 const isCheese = propEq('commonIdentifier', COMMON_IDENTIFIERS.CHEESE);
 
-const getMeatQuantityWithDiscount = meat => {
-  const { quantity } = meat;
-  return quantity - parseInt(quantity / 3, 10);
-}
+const freeItems = item => parseInt(item.quantity / 3, 10);
 
-const getCheeseQuantityWithDiscount = cheese => {
-  const { quantity } = cheese;
-  return quantity - parseInt(quantity / 3, 10);
-}
+export const quantityPromotionAccumulate = item =>
+  (isMeat(item) || isCheese(item)) ?
+  freeItems(item) :
+  0;
 
 const applyQuantityDiscount = item =>
-  isCheese(item) ? getCheeseQuantityWithDiscount(item) :
-  isMeat(item) ? getMeatQuantityWithDiscount(item) :
+  (isMeat(item) || isCheese(item)) ?
+  item.quantity - freeItems(item) :
   item.quantity;
 
 export const getBill = items => {
