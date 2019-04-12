@@ -6,6 +6,12 @@ import { pure } from "recompose";
 import SandwichCard from "../SandwichCard";
 import styles from "./style";
 
+const emptySandwich = {
+  id: "0",
+  name: "Novo Lanche",
+  ingredients: [],
+};
+
 const SandwichList = ({ sandwiches, onChooseSandwich }) => (
   <View style={styles.container}>
     {sandwiches.map(sandwich => (
@@ -15,6 +21,11 @@ const SandwichList = ({ sandwiches, onChooseSandwich }) => (
         onChooseSandwich={onChooseSandwich}
       />
     ))}
+    <SandwichCard
+      key={emptySandwich.id}
+      sandwich={emptySandwich}
+      onChooseSandwich={onChooseSandwich}
+    />
   </View>
 );
 

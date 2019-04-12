@@ -28,8 +28,8 @@ export const getDiscounts = items => {
   const getMeat = find(isMeat, items);
   const getCheese = find(isCheese, items);
 
-  const getMeatDiscount = freeItems(getMeat);
-  const getCheeseDiscount = freeItems(getCheese);
+  const getMeatDiscount = getMeat ? freeItems(getMeat) : 0;
+  const getCheeseDiscount = getCheese ? freeItems(getCheese) : 0;
 
   const hasQuantityDiscount = quantity => quantity > 0;
 

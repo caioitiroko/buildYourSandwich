@@ -52,9 +52,13 @@ IngredientCard.propTypes = {
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
   }).isRequired,
-  quantity: PropTypes.number.isRequired,
+  quantity: PropTypes.number,
   onAddIngredient: PropTypes.func.isRequired,
   onRemoveIngredient: PropTypes.func.isRequired,
 };
+
+IngredientCard.defaultProps = {
+  quantity: 0,
+}
 
 export default enhance(IngredientCard);

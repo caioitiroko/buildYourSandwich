@@ -18,23 +18,24 @@ const enhance = compose(
 
 const IngredientList = ({
   ingredients, ingredientsSelected, onAddIngredient, onRemoveIngredient,
-}) => (
+}) => {
+  return (
   <View style={styles.container}>
-    {ingredients.map((ingredient) => {
-      const { quantity = 0 } = findItem(ingredient.id, ingredientsSelected) || {};
+    {ingredients.map(ingredient => {
+      const ingredientSelected = findItem(ingredient.id, ingredientsSelected) || {};
 
       return (
         <IngredientCard
           key={ingredient.id}
           ingredient={ingredient}
-          quantity={quantity}
+          quantity={ingredientSelected.quantity}
           onAddIngredient={onAddIngredient}
           onRemoveIngredient={onRemoveIngredient}
         />
       );
     })}
   </View>
-);
+)};
 
 IngredientList.propTypes = {
   ingredients: PropTypes.arrayOf(PropTypes.object),
