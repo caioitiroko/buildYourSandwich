@@ -1,6 +1,10 @@
 import {
+  Image,
   SafeAreaView,
   ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { addIngredient, removeIngredient, requestIngredients } from "../../../../actions";
 import {
@@ -12,6 +16,8 @@ import {
 } from "recompose";
 import { getError, getIngredients, isLoading } from "../../selectors";
 
+import { Actions } from "react-native-router-flux";
+import ArrowLeft from "../../../../../images/simple-arrow-left.png"
 import IngredientList from "../../components/IngredientList";
 import PropTypes from "prop-types";
 import React from "react";
@@ -38,6 +44,7 @@ const enhance = compose(
   ),
   withHandlers({
     onAddIngredient: ({ onAddIngredient }) => ingredient => onAddIngredient(ingredient),
+    onBack: () => () => Actions.pop(),
     onRemoveIngredient: ({ onRemoveIngredient }) => ingredient => onRemoveIngredient(ingredient),
   }),
   lifecycle({
@@ -49,8 +56,14 @@ const enhance = compose(
   ),
 );
 
-const ChooseIngredients = ({ onAddIngredient, onRemoveIngredient, ingredients }) => (
+const ChooseIngredients = ({ onAddIngredient, onBack, onRemoveIngredient, ingredients }) => (
   <SafeAreaView style={styles.container}>
+    <View style={styles.header}>
+      <TouchableOpacity onPress={onBack} style={styles.backButtom}>
+        <Image source={ArrowLeft} />
+      </TouchableOpacity>
+      <Text style={styles.title}>Incremente seu lanche</Text>
+    </View>
     <ScrollView>
       <IngredientList
         ingredients={ingredients}
@@ -65,6 +78,7 @@ const ChooseIngredients = ({ onAddIngredient, onRemoveIngredient, ingredients })
 ChooseIngredients.propTypes = {
   ingredients: PropTypes.arrayOf(PropTypes.object),
   onAddIngredient: PropTypes.func.isRequired,
+  onBack: PropTypes.func.isRequired,
   onRemoveIngredient: PropTypes.func.isRequired,
 };
 

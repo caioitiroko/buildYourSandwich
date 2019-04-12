@@ -7,4 +7,16 @@ export default StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#FFF",
   },
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingTop: 20,
+    justifyContent: "space-between",
+  },
+  title: {
+    color: "#000",
+    fontSize: 20,
+    fontWeight: "bold",
+    marginLeft: 20,
+  },
 });

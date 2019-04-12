@@ -21,7 +21,6 @@ const enhance = compose(
 
 const IngredientList = ({ ingredients, ingredientsSelected, onAddIngredient, onRemoveIngredient }) => (
   <View style={styles.container}>
-    <Text style={styles.title}>Incremente seu lanche</Text>
     {ingredients.map(ingredient => {
       const { quantity = 0 } = findItem(ingredient.id, ingredientsSelected) || {};
 
