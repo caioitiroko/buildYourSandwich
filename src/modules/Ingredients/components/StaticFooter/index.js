@@ -34,7 +34,7 @@ const enhance = compose(
 
 const StaticFooter = ({ bill, discounts }) => (
   <View style={styles.container}>
-    <Text style={styles.bill}>{`Total: R$ ${bill}`}</Text>
+    <Text style={styles.bill}>{`Total: R$ ${bill.toFixed(2)}`}</Text>
     <DiscountList discounts={discounts} />
   </View>
 );

@@ -31,7 +31,7 @@ const IngredientCard = ({
   <View style={styles.container}>
     <View style={styles.ingredientInfo}>
       <Text style={styles.ingredientName}>{ingredient.name}</Text>
-      <Text style={styles.ingredientPrice}>{`R$ ${ingredient.price}`}</Text>
+      <Text style={styles.ingredientPrice}>{`R$ ${ingredient.price.toFixed(2)}`}</Text>
     </View>
     <View style={styles.buttonContainer}>
       <TouchableOpacity onPress={onAddIngredient} activeOpacity={0.8}>
