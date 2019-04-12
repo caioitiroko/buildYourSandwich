@@ -8,5 +8,5 @@ export default StyleSheet.create({
     fontWeight: "bold",
     color: "#999",
     fontSize: 16,
-  }
+  },
 });

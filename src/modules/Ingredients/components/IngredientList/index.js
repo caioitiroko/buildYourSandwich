@@ -18,10 +18,9 @@ const enhance = compose(
 
 const IngredientList = ({
   ingredients, ingredientsSelected, onAddIngredient, onRemoveIngredient,
-}) => {
-  return (
+}) => (
   <View style={styles.container}>
-    {ingredients.map(ingredient => {
+    {ingredients.map((ingredient) => {
       const ingredientSelected = findItem(ingredient.id, ingredientsSelected) || {};
 
       return (
@@ -35,7 +34,7 @@ const IngredientList = ({
       );
     })}
   </View>
-)};
+);
 
 IngredientList.propTypes = {
   ingredients: PropTypes.arrayOf(PropTypes.object),

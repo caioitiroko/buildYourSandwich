@@ -13,12 +13,11 @@ import {
 import PropTypes from "prop-types";
 import React from "react";
 import { connect } from "react-redux";
+import { isEmpty } from "ramda";
 import { getBill, getDiscounts } from "../../services";
 import { getIngredientsSelected } from "../../selectors";
 import DiscountList from "../DiscountList";
 import styles from "./style";
-import { COMMON_IDENTIFIERS } from "../../../../constants";
-import { isEmpty } from "ramda";
 
 const enhance = compose(
   pure,
@@ -29,7 +28,7 @@ const enhance = compose(
     bill: getBill(ingredientsSelected),
     discounts: getDiscounts(ingredientsSelected),
   })),
-  branch(({ingredientsSelected}) => isEmpty(ingredientsSelected), renderNothing),
+  branch(({ ingredientsSelected }) => isEmpty(ingredientsSelected), renderNothing),
 );
 
 const StaticFooter = ({ bill, discounts }) => (
@@ -41,7 +40,7 @@ const StaticFooter = ({ bill, discounts }) => (
 
 StaticFooter.propTypes = {
   bill: PropTypes.number.isRequired,
-  discounts: PropTypes.array.isRequired,
+  discounts: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default enhance(StaticFooter);

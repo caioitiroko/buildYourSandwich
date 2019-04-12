@@ -129,7 +129,7 @@ describe("Testing discount logic", () => {
     expect(getDiscounts(items)).toEqual([
       { name: DISCOUNTS.LIGHT, quantity: null, active: true },
       { name: DISCOUNTS.EXTRA_MEAT, quantity: 1, active: true },
-      { name: DISCOUNTS.EXTRA_CHEESE, quantity: 0, active: false }
+      { name: DISCOUNTS.EXTRA_CHEESE, quantity: 0, active: false },
     ]);
-  })
+  });
 });

@@ -24,7 +24,7 @@ const isCheese = propEq("commonIdentifier", COMMON_IDENTIFIERS.CHEESE);
 
 const freeItems = item => parseInt(item.quantity / 3, 10);
 
-export const getDiscounts = items => {
+export const getDiscounts = (items) => {
   const getMeat = find(isMeat, items);
   const getCheese = find(isCheese, items);
 
@@ -33,12 +33,24 @@ export const getDiscounts = items => {
 
   const hasQuantityDiscount = quantity => quantity > 0;
 
-  return([
-    { name: DISCOUNTS.LIGHT, quantity: null, active: hasLightDiscount(items) },
-    { name: DISCOUNTS.EXTRA_MEAT, quantity: getMeatDiscount, active: hasQuantityDiscount(getMeatDiscount) },
-    { name: DISCOUNTS.EXTRA_CHEESE, quantity: getCheeseDiscount, active: hasQuantityDiscount(getCheeseDiscount) }
+  return ([
+    {
+      name: DISCOUNTS.LIGHT,
+      quantity: null,
+      active: hasLightDiscount(items),
+    },
+    {
+      name: DISCOUNTS.EXTRA_MEAT,
+      quantity: getMeatDiscount,
+      active: hasQuantityDiscount(getMeatDiscount),
+    },
+    {
+      name: DISCOUNTS.EXTRA_CHEESE,
+      quantity: getCheeseDiscount,
+      active: hasQuantityDiscount(getCheeseDiscount),
+    },
   ]);
-}
+};
 
 const applyQuantityDiscount = item => ((isMeat(item) || isCheese(item))
   ? item.quantity - freeItems(item)

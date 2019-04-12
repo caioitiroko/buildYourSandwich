@@ -19,12 +19,12 @@ import styles from "./style";
 const enhance = compose(
   pure,
   withProps(({ discounts }) => ({
-    discounts: filter(prop('active'), discounts),
+    discounts: filter(prop("active"), discounts),
   }))
 );
 
-const discountQuantity = quantity => quantity ? `${quantity}X` : "";
-const discountText = ({ quantity, name}) => `${discountQuantity(quantity)} ${name}`;
+const discountQuantity = quantity => (quantity ? `${quantity}X` : "");
+const discountText = ({ quantity, name }) => `${discountQuantity(quantity)} ${name}`;
 
 const DiscountList = ({ discounts }) => (
   <View style={styles.container}>
@@ -35,7 +35,7 @@ const DiscountList = ({ discounts }) => (
 );
 
 DiscountList.propTypes = {
-  discounts: PropTypes.array.isRequired,
+  discounts: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default enhance(DiscountList);

@@ -59,6 +59,6 @@ IngredientCard.propTypes = {
 
 IngredientCard.defaultProps = {
   quantity: 0,
-}
+};
 
 export default enhance(IngredientCard);
