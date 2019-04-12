@@ -1,8 +1,8 @@
 import "react-native";
 
-import { getBill, quantityPromotionAccumulate } from "./cart";
+import { getBill, getDiscounts } from "./cart";
 
-import { COMMON_IDENTIFIERS } from "../../../constants";
+import { COMMON_IDENTIFIERS, DISCOUNTS } from "../../../constants";
 
 describe("Testing discount logic", () => {
   it("Without discount", () => {
@@ -105,20 +105,31 @@ describe("Testing discount logic", () => {
         id: "5", name: "Queijo", commonIdentifier: COMMON_IDENTIFIERS.CHEESE, price: 1.5, quantity: 10,
       },
     ];
-    expect(getBill(itemsA)).toEqual(6);
-    expect(getBill(itemsB)).toEqual(9);
-    expect(getBill(itemsC)).toEqual(13.5);
+    expect(getBill(itemA)).toEqual(6);
+    expect(getBill(itemB)).toEqual(9);
+    expect(getBill(itemC)).toEqual(13.5);
   });
 
-  it("Calculate how many quantity discount are accumulate", () => {
-    const meat = {
-      id: "3", name: "Hambúrguer de carne", commonIdentifier: COMMON_IDENTIFIERS.MEAT_BURGER, price: 3, quantity: 7,
-    };
-    const cheese = {
-      id: "5", name: "Queijo", commonIdentifier: COMMON_IDENTIFIERS.CHEESE, price: 1.5, quantity: 10,
-    };
+  it("Get discounts", () => {
+    const items = [
+      {
+        id: "1", name: "Alface", commonIdentifier: COMMON_IDENTIFIERS.LETTUCE, price: 0.4, quantity: 1,
+      },
+      {
+        id: "2", name: "Bacon", commonIdentifier: COMMON_IDENTIFIERS.BACON, price: 2, quantity: 0,
+      },
+      {
+        id: "3", name: "Hambúrguer de carne", commonIdentifier: COMMON_IDENTIFIERS.MEAT_BURGER, price: 3, quantity: 3,
+      },
+      {
+        id: "5", name: "Queijo", commonIdentifier: COMMON_IDENTIFIERS.CHEESE, price: 1.5, quantity: 2,
+      },
+    ];
 
-    expect(quantityPromotionAccumulate(meat)).toEqual(2);
-    expect(quantityPromotionAccumulate(cheese)).toEqual(3);
-  });
+    expect(getDiscounts(items)).toEqual([
+      { name: DISCOUNTS.LIGHT, quantity: null, active: true },
+      { name: DISCOUNTS.EXTRA_MEAT, quantity: 1, active: true },
+      { name: DISCOUNTS.EXTRA_CHEESE, quantity: 0, active: false }
+    ]);
+  })
 });
