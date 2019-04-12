@@ -44,6 +44,7 @@ const IngredientCard = ({ ingredient, quantity, onAddIngredient, onRemoveIngredi
 
 IngredientCard.propTypes = {
   ingredient: PropTypes.shape({
+    commonIdentifier: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,

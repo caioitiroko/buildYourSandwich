@@ -9,11 +9,13 @@ import {
   sum,
 } from "ramda"
 
+import { COMMON_IDENTIFIERS } from "../../../constants";
+
 import { roundToTwo } from "../../../utils";
 
 const hasLightDiscount = items => {
-  const lettuce = find(propEq('name', 'Alface'), items) || {};
-  const bacon = find(propEq('name', 'Bacon'), items) || {};
+  const lettuce = find(propEq('commonIdentifier', COMMON_IDENTIFIERS.LETTUCE), items) || {};
+  const bacon = find(propEq('commonIdentifier', COMMON_IDENTIFIERS.BACON), items) || {};
 
   const hasLettuce = (lettuce.quantity || 0) > 0;
   const hasBacon = (bacon.quantity || 0) > 0;
@@ -21,9 +23,9 @@ const hasLightDiscount = items => {
   return hasLettuce && !hasBacon;
 }
 
-const isMeat = propEq('name', 'Hambúrguer de carne');
+const isMeat = propEq('commonIdentifier', COMMON_IDENTIFIERS.MEAT_BURGER);
 
-const isCheese = propEq('name', 'Queijo');
+const isCheese = propEq('commonIdentifier', COMMON_IDENTIFIERS.CHEESE);
 
 const getMeatQuantityWithDiscount = meat => {
   const { quantity } = meat;
