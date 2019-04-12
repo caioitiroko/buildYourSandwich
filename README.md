@@ -6,6 +6,8 @@ Build Your Sandwich is an menu app for sandwiches. It will calculate the price o
 - Each 3 meat burgers you pay only 2;
 - Each 3 cheeses you pay only 2;
 
+The sandwiches and ingredients data are received from [simple-snack-api](https://github.com/caioitiroko/simple-snack-api).
+
 ## Requirements
 - npm
 - NodeJS
