@@ -18,9 +18,13 @@ export default StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
   },
+  header: {
+    flexDirection: "row",
+  },
   total: {
     color: "#444",
     fontSize: 20,
     fontWeight: "bold",
+    marginRight: 5,
   },
 });

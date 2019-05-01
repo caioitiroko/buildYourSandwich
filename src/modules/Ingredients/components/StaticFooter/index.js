@@ -1,5 +1,6 @@
 import {
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 import {
@@ -18,6 +19,7 @@ import { getBill, getDiscounts } from "../../services";
 import { getIngredientsSelected } from "../../selectors";
 import DiscountList from "../DiscountList";
 import styles from "./style";
+import Ionicon from "react-native-vector-icons/Ionicons";
 
 const enhance = compose(
   pure,
@@ -32,9 +34,14 @@ const enhance = compose(
   branch(({ bill }) => bill === 0, renderNothing),
 );
 
-const StaticFooter = ({ bill, discounts }) => (
+const StaticFooter = ({ bill, discounts, onShowDiscountModal }) => (
   <View style={styles.container}>
-    <Text style={styles.total}>TOTAL</Text>
+    <View style={styles.header}>
+      <Text style={styles.total}>TOTAL</Text>
+      <TouchableOpacity onPress={onShowDiscountModal} style={styles.backButtom}>
+        <Ionicon name="md-information-circle-outline" size={24} color="#444" />
+      </TouchableOpacity>
+    </View>
     <Text style={styles.bill}>{`R$ ${bill.toFixed(2)}`}</Text>
     <DiscountList discounts={discounts} />
   </View>
@@ -43,6 +50,7 @@ const StaticFooter = ({ bill, discounts }) => (
 StaticFooter.propTypes = {
   bill: PropTypes.number.isRequired,
   discounts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onShowDiscountModal: PropTypes.func.isRequired,
 };
 
 export default enhance(StaticFooter);

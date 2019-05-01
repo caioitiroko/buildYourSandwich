@@ -10,9 +10,11 @@ import {
   compose,
   pure,
   renderComponent,
+  withState,
   withHandlers,
 } from "recompose";
 
+import DiscountListModal from "../../components/DiscountListModal";
 import { Actions } from "react-native-router-flux";
 import PropTypes from "prop-types";
 import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
@@ -45,10 +47,14 @@ const enhance = compose(
       onRemoveIngredient: ingredient => dispatch(removeIngredient(ingredient)),
     })
   ),
+  withState("showDiscountModal", "setShowDiscountModal", false),
   withHandlers({
     onAddIngredient: ({ onAddIngredient }) => ingredient => onAddIngredient(ingredient),
     onBack: () => () => Actions.pop(),
     onRemoveIngredient: ({ onRemoveIngredient }) => ingredient => onRemoveIngredient(ingredient),
+    onToggleDiscountModal:
+      ({ showDiscountModal, setShowDiscountModal }) => () =>
+        setShowDiscountModal(!showDiscountModal),
   }),
   lifecycle({
     componentDidMount: ({ onRequestIngredients }) => onRequestIngredients(),
@@ -64,10 +70,16 @@ const enhance = compose(
 );
 
 const ChooseIngredients = ({
-  onAddIngredient, onBack, onRemoveIngredient, ingredients,
+  ingredients,
+  onAddIngredient,
+  onBack,
+  onRemoveIngredient,
+  onToggleDiscountModal,
+  showDiscountModal,
 }) => (
   <ImageBackground source={WoodBackground} style={styles.background}>
     <SafeAreaView />
+    <DiscountListModal isVisible={showDiscountModal} onToggle={onToggleDiscountModal} />
     <View style={styles.container}>
       <TouchableOpacity onPress={onBack} style={styles.backButtom}>
         <MaterialCommunityIcon name="chevron-left" size={50} color="#000" />
@@ -83,7 +95,7 @@ const ChooseIngredients = ({
         onAddIngredient={onAddIngredient}
         onRemoveIngredient={onRemoveIngredient}
       />
-      <StaticFooter />
+      <StaticFooter onShowDiscountModal={onToggleDiscountModal}/>
     </View>
     <SafeAreaView />
   </ImageBackground>
@@ -94,6 +106,7 @@ ChooseIngredients.propTypes = {
   onAddIngredient: PropTypes.func.isRequired,
   onBack: PropTypes.func.isRequired,
   onRemoveIngredient: PropTypes.func.isRequired,
+  onToggleDiscountModal: PropTypes.func.isRequired,
 };
 
 ChooseIngredients.defaultProps = {
