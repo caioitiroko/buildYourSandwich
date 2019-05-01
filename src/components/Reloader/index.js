@@ -1,23 +1,28 @@
 import {
-  Button,
+  ImageBackground,
   SafeAreaView,
+  Text,
+  View,
+  TouchableOpacity,
 } from "react-native";
 import React from "react";
 import { pure } from "recompose";
 import PropTypes from "prop-types";
 import styles from "./style";
+import WoodBackground from "../../../images/wood.jpg";
 
 const enhance = pure;
 
 const Reloader = ({ onReload }) => (
-  <SafeAreaView style={styles.container}>
-    <Button
-      onPress={onReload}
-      title="Reload"
-      color="#F00"
-      accessibilityLabel="Reload"
-    />
-  </SafeAreaView>
+  <ImageBackground source={WoodBackground} style={styles.background}>
+    <SafeAreaView />
+    <View style={styles.container}>
+      <TouchableOpacity onPress={onReload} activeOpacity={0.8} style={styles.button}>
+        <Text style={styles.title}>Recarregar</Text>
+      </TouchableOpacity>
+    </View>
+    <SafeAreaView />
+  </ImageBackground>
 );
 
 Reloader.propTypes = {
