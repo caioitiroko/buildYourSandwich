@@ -1,7 +1,6 @@
 import {
-  Image,
+  ImageBackground,
   SafeAreaView,
-  ScrollView,
   Text,
   TouchableOpacity,
   View,
@@ -16,19 +15,21 @@ import {
 
 import { Actions } from "react-native-router-flux";
 import PropTypes from "prop-types";
+import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import React from "react";
 import { connect } from "react-redux";
 import lifecycle from "react-pure-lifecycle";
 import { prop } from "ramda";
 import StaticFooter from "../../components/StaticFooter";
 import RedSpinner from "../../../../components/RedSpinner";
+import Divider from "../../../../components/Divider";
 import IngredientList from "../../components/IngredientList";
-import ArrowLeft from "../../../../../images/simple-arrow-left.png";
 import { getError, getIngredients, isLoading } from "../../selectors";
 import { addIngredient, removeIngredient, requestIngredients } from "../../../../actions";
 import styles from "./style";
 import { isNotNil } from "../../../../utils";
 import Reloader from "../../../../components/Reloader";
+import WoodBackground from "../../../../../images/wood.jpg";
 
 const enhance = compose(
   pure,
@@ -65,22 +66,27 @@ const enhance = compose(
 const ChooseIngredients = ({
   onAddIngredient, onBack, onRemoveIngredient, ingredients,
 }) => (
-  <SafeAreaView style={styles.container}>
-    <View style={styles.header}>
-      <TouchableOpacity onPress={onBack} style={styles.backButtom}>
-        <Image source={ArrowLeft} />
-      </TouchableOpacity>
-      <Text style={styles.title}>Incremente seu lanche</Text>
-    </View>
-    <ScrollView>
+  <ImageBackground source={WoodBackground} style={styles.background}>
+    <SafeAreaView />
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={onBack} style={styles.backButtom}>
+          <MaterialCommunityIcon name="chevron-left" size={50} color="#000" />
+        </TouchableOpacity>
+        <Divider color="#666" style={styles.divider}>
+          <MaterialCommunityIcon name="food-variant" size={30} color="#666" />
+        </Divider>
+        <Text style={styles.title}>Incremente seu lanche</Text>
+      </View>
       <IngredientList
         ingredients={ingredients}
         onAddIngredient={onAddIngredient}
         onRemoveIngredient={onRemoveIngredient}
       />
-    </ScrollView>
-    <StaticFooter />
-  </SafeAreaView>
+      <StaticFooter />
+    </View>
+    <SafeAreaView />
+  </ImageBackground>
 );
 
 ChooseIngredients.propTypes = {

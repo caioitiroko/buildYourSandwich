@@ -29,11 +29,13 @@ const enhance = compose(
     discounts: getDiscounts(ingredientsSelected),
   })),
   branch(({ ingredientsSelected }) => isEmpty(ingredientsSelected), renderNothing),
+  branch(({ bill }) => bill === 0, renderNothing),
 );
 
 const StaticFooter = ({ bill, discounts }) => (
   <View style={styles.container}>
-    <Text style={styles.bill}>{`Total: R$ ${bill.toFixed(2)}`}</Text>
+    <Text style={styles.total}>TOTAL</Text>
+    <Text style={styles.bill}>{`R$ ${bill.toFixed(2)}`}</Text>
     <DiscountList discounts={discounts} />
   </View>
 );

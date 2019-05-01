@@ -6,7 +6,9 @@ export default StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-around",
-    backgroundColor: "#FFF",
+    backgroundColor: "rgba(0,0,0,0.1)",
+    borderBottomLeftRadius: 6,
+    borderBottomRightRadius: 6,
     borderTopWidth: 1,
     borderColor: "#000",
     padding: 20,
@@ -14,6 +16,11 @@ export default StyleSheet.create({
   bill: {
     color: "#000",
     fontSize: 24,
+    fontWeight: "bold",
+  },
+  total: {
+    color: "#444",
+    fontSize: 20,
     fontWeight: "bold",
   },
 });

@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { View, ScrollView } from "react-native";
 import { compose, pure } from "recompose";
 
 import PropTypes from "prop-types";
@@ -19,21 +19,23 @@ const enhance = compose(
 const IngredientList = ({
   ingredients, ingredientsSelected, onAddIngredient, onRemoveIngredient,
 }) => (
-  <View style={styles.container}>
-    {ingredients.map((ingredient) => {
-      const ingredientSelected = findItem(ingredient.id, ingredientsSelected) || {};
+  <ScrollView>
+    <View style={styles.container}>
+      {ingredients.map((ingredient) => {
+        const ingredientSelected = findItem(ingredient.id, ingredientsSelected) || {};
 
-      return (
-        <IngredientCard
-          key={ingredient.id}
-          ingredient={ingredient}
-          quantity={ingredientSelected.quantity}
-          onAddIngredient={onAddIngredient}
-          onRemoveIngredient={onRemoveIngredient}
-        />
-      );
-    })}
-  </View>
+        return (
+          <IngredientCard
+            key={ingredient.id}
+            ingredient={ingredient}
+            quantity={ingredientSelected.quantity}
+            onAddIngredient={onAddIngredient}
+            onRemoveIngredient={onRemoveIngredient}
+          />
+        );
+      })}
+    </View>
+  </ScrollView>
 );
 
 IngredientList.propTypes = {

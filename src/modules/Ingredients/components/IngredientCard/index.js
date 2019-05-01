@@ -1,5 +1,4 @@
 import {
-  Image,
   Text,
   TouchableOpacity,
   View,
@@ -12,8 +11,8 @@ import {
 
 import PropTypes from "prop-types";
 import React from "react";
-import ArrowBottom from "../../../../../images/arrow-bottom.png";
-import ArrowTop from "../../../../../images/arrow-top.png";
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import styles from "./style";
 
 const enhance = compose(
@@ -31,15 +30,18 @@ const IngredientCard = ({
   <View style={styles.container}>
     <View style={styles.ingredientInfo}>
       <Text style={styles.ingredientName}>{ingredient.name}</Text>
-      <Text style={styles.ingredientPrice}>{`R$ ${ingredient.price.toFixed(2)}`}</Text>
+      <View style={styles.ingredientPriceContainer}>
+        <MaterialCommunityIcon name="cash" size={26} color="#FFF" style={styles.ingredientPriceIcon} />
+        <Text style={styles.ingredientPrice}>{`R$ ${ingredient.price.toFixed(2)}`}</Text>
+      </View>
     </View>
     <View style={styles.buttonContainer}>
       <TouchableOpacity onPress={onAddIngredient} activeOpacity={0.8}>
-        <Image source={ArrowTop} />
+        <FontAwesomeIcon name="plus-circle" size={26} color="#FFF" />
       </TouchableOpacity>
       <Text style={styles.ingredientQuantity}>{quantity}</Text>
       <TouchableOpacity onPress={onRemoveIngredient} activeOpacity={0.8}>
-        <Image source={ArrowBottom} />
+        <FontAwesomeIcon name="minus-circle" size={26} color="#FFF" />
       </TouchableOpacity>
     </View>
   </View>

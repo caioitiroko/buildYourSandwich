@@ -6,7 +6,7 @@ export default StyleSheet.create({
   },
   discount: {
     fontWeight: "bold",
-    color: "#999",
+    color: "#666",
     fontSize: 16,
   },
 });
