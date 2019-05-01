@@ -69,10 +69,10 @@ const ChooseIngredients = ({
   <ImageBackground source={WoodBackground} style={styles.background}>
     <SafeAreaView />
     <View style={styles.container}>
+      <TouchableOpacity onPress={onBack} style={styles.backButtom}>
+        <MaterialCommunityIcon name="chevron-left" size={50} color="#000" />
+      </TouchableOpacity>
       <View style={styles.header}>
-        <TouchableOpacity onPress={onBack} style={styles.backButtom}>
-          <MaterialCommunityIcon name="chevron-left" size={50} color="#000" />
-        </TouchableOpacity>
         <Divider color="#666" style={styles.divider}>
           <MaterialCommunityIcon name="food-variant" size={30} color="#666" />
         </Divider>
