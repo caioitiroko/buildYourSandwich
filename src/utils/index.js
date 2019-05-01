@@ -1,10 +1,12 @@
-import { complement, isNil } from "ramda";
+import { complement, isEmpty, isNil } from "ramda";
 
 export * from "./array";
 export * from "./error";
 export * from "./number";
 
 export const isNotNil = complement(isNil);
+
+export const isNotEmpty = complement(isEmpty);
 
 export const apiRequestActionType = endpoint => `${endpoint}_REQUEST`;
 

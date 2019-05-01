@@ -1,20 +1,29 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
+  background: {
+    alignItems: "center",
+    height: "100%",
+    width: "100%",
+  },
   container: {
     alignItems: "center",
+    backgroundColor: "rgba(255,255,255,0.5)",
+    borderRadius: 6,
+    width: "80%",
     flex: 1,
-    justifyContent: "center",
-    backgroundColor: "#FFF",
+    marginVertical: 26,
+    paddingVertical: 20,
+  },
+  divider: {
+    marginBottom: 10,
   },
   header: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingTop: 20,
-    justifyContent: "flex-start",
+    marginBottom: 20,
   },
   title: {
-    color: "#000",
+    alignSelf: "center",
+    color: "#444",
     fontSize: 20,
     fontWeight: "bold",
   },

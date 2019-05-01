@@ -1,6 +1,6 @@
 import {
+  ImageBackground,
   SafeAreaView,
-  ScrollView,
   Text,
   View,
 } from "react-native";
@@ -18,6 +18,9 @@ import React from "react";
 import { connect } from "react-redux";
 import lifecycle from "react-pure-lifecycle";
 import { prop } from "ramda";
+import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
+
+import Divider from "../../../../components/Divider";
 import SandwichList from "../../components/SandwichList";
 import RedSpinner from "../../../../components/RedSpinner";
 import { requestSnacks, setSelectedSandwich } from "../../../../actions";
@@ -25,6 +28,7 @@ import { getError, getSnacks, isLoading } from "../../selectors";
 import { isNotNil } from "../../../../utils";
 import styles from "./style";
 import Reloader from "../../../../components/Reloader";
+import WoodBackground from "../../../../../images/wood.jpg";
 
 const enhance = compose(
   pure,
@@ -59,14 +63,23 @@ const enhance = compose(
 );
 
 const ChooseSandwich = ({ onChooseSandwich, sandwiches }) => (
-  <SafeAreaView style={styles.container}>
-    <View style={styles.header}>
-      <Text style={styles.title}>Escolha seu lanche</Text>
+  <ImageBackground source={WoodBackground} style={styles.background}>
+    <SafeAreaView />
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Divider color="#666" style={styles.divider}>
+          <FontAwesome5Icon name="hamburger" size={30} color="#666" />
+        </Divider>
+        <Text style={styles.title}>Escolha seu lanche</Text>
+      </View>
+      <SandwichList
+        sandwiches={sandwiches}
+        onChooseSandwich={onChooseSandwich}
+        style={styles.sandwichList}
+      />
     </View>
-    <ScrollView>
-      <SandwichList sandwiches={sandwiches} onChooseSandwich={onChooseSandwich} />
-    </ScrollView>
-  </SafeAreaView>
+    <SafeAreaView />
+  </ImageBackground>
 );
 
 ChooseSandwich.propTypes = {
