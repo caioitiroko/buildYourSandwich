@@ -22,9 +22,6 @@ export default StyleSheet.create({
     color: "#FFF",
     fontSize: 20,
     fontWeight: "bold",
-    textShadowColor: "#000",
-    textShadowRadius: 1,
-    textShadowOffset: { width: 1, height: 1 },
   },
   bottomDetail: {
     backgroundColor: "rgba(0,0,0,0)",
@@ -66,6 +63,8 @@ export default StyleSheet.create({
     fontSize: 14,
     color: "#FFF",
     fontWeight: "bold",
+  },
+  discreetShadow: {
     textShadowColor: "#000",
     textShadowRadius: 1,
     textShadowOffset: { width: 1, height: 1 },

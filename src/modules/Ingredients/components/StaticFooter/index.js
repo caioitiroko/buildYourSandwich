@@ -15,11 +15,11 @@ import PropTypes from "prop-types";
 import React from "react";
 import { connect } from "react-redux";
 import { isEmpty } from "ramda";
+import Ionicon from "react-native-vector-icons/Ionicons";
 import { getBill, getDiscounts } from "../../services";
 import { getIngredientsSelected } from "../../selectors";
 import DiscountList from "../DiscountList";
 import styles from "./style";
-import Ionicon from "react-native-vector-icons/Ionicons";
 
 const enhance = compose(
   pure,

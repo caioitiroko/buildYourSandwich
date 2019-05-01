@@ -13,7 +13,7 @@ export default StyleSheet.create({
   header: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent:"space-between"
+    justifyContent: "space-between",
   },
   discountContainer: {
     marginVertical: 10,
@@ -24,5 +24,5 @@ export default StyleSheet.create({
   },
   discountDescription: {
     fontSize: 16,
-  }
+  },
 });

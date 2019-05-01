@@ -14,7 +14,6 @@ import {
   withHandlers,
 } from "recompose";
 
-import DiscountListModal from "../../components/DiscountListModal";
 import { Actions } from "react-native-router-flux";
 import PropTypes from "prop-types";
 import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
@@ -22,6 +21,7 @@ import React from "react";
 import { connect } from "react-redux";
 import lifecycle from "react-pure-lifecycle";
 import { prop } from "ramda";
+import DiscountListModal from "../../components/DiscountListModal";
 import StaticFooter from "../../components/StaticFooter";
 import RedSpinner from "../../../../components/RedSpinner";
 import Divider from "../../../../components/Divider";
@@ -53,8 +53,7 @@ const enhance = compose(
     onBack: () => () => Actions.pop(),
     onRemoveIngredient: ({ onRemoveIngredient }) => ingredient => onRemoveIngredient(ingredient),
     onToggleDiscountModal:
-      ({ showDiscountModal, setShowDiscountModal }) => () =>
-        setShowDiscountModal(!showDiscountModal),
+    ({ showDiscountModal, setShowDiscountModal }) => () => setShowDiscountModal(!showDiscountModal),
   }),
   lifecycle({
     componentDidMount: ({ onRequestIngredients }) => onRequestIngredients(),
@@ -95,7 +94,7 @@ const ChooseIngredients = ({
         onAddIngredient={onAddIngredient}
         onRemoveIngredient={onRemoveIngredient}
       />
-      <StaticFooter onShowDiscountModal={onToggleDiscountModal}/>
+      <StaticFooter onShowDiscountModal={onToggleDiscountModal} />
     </View>
     <SafeAreaView />
   </ImageBackground>
@@ -103,6 +102,7 @@ const ChooseIngredients = ({
 
 ChooseIngredients.propTypes = {
   ingredients: PropTypes.arrayOf(PropTypes.object),
+  showDiscountModal: PropTypes.bool,
   onAddIngredient: PropTypes.func.isRequired,
   onBack: PropTypes.func.isRequired,
   onRemoveIngredient: PropTypes.func.isRequired,
@@ -111,6 +111,7 @@ ChooseIngredients.propTypes = {
 
 ChooseIngredients.defaultProps = {
   ingredients: [],
+  showDiscountModal: false,
 };
 
 export default enhance(ChooseIngredients);

@@ -1,10 +1,12 @@
 import PropTypes from "prop-types";
 import React from "react";
-import styles from "./style";
 import { pure } from "recompose";
 import Modal from "react-native-modal";
-import { ScrollView, View, Text, TouchableOpacity } from "react-native";
+import {
+  ScrollView, View, Text, TouchableOpacity,
+} from "react-native";
 import Ionicon from "react-native-vector-icons/Ionicons";
+import styles from "./style";
 
 const enhance = pure;
 
@@ -43,7 +45,7 @@ const DiscountListModal = ({ isVisible, onToggle }) => (
             Assim por diante...
           </Text>
         </View>
-        </ScrollView>
+      </ScrollView>
     </View>
   </Modal>
 );
@@ -55,6 +57,6 @@ DiscountListModal.propTypes = {
 
 DiscountListModal.defaultProps = {
   isVisible: false,
-}
+};
 
 export default enhance(DiscountListModal);

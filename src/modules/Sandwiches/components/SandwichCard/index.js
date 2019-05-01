@@ -12,6 +12,7 @@ import {
 import PropTypes from "prop-types";
 import React from "react";
 import Ionicon from "react-native-vector-icons/Ionicons";
+import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 
 import { isEmpty } from "ramda";
 
@@ -39,9 +40,9 @@ const SandwichCard = ({
         styles.content,
       ]}
     >
-      <Text style={styles.sandwichName}>{sandwich.name}</Text>
+      <Text style={[styles.sandwichName, styles.discreetShadow]}>{sandwich.name}</Text>
       <TouchableOpacity style={styles.showMore} onPress={onToggleShow}>
-        <Ionicon name="md-information-circle" size={20} color="#FFF" />
+        <MaterialCommunityIcon name="information" size={20} color="#FFF" style={styles.discreetShadow} />
       </TouchableOpacity>
     </View>
     { showIngredients
@@ -51,14 +52,22 @@ const SandwichCard = ({
           isEmpty(sandwich.ingredients)
             ? (
               <View key="no-ingredients" style={styles.ingredientContainer}>
-                <Ionicon name="md-checkmark" size={20} color="#FFF" style={styles.ingredientIcon} />
-                <Text style={styles.ingredientName}>Nenhum ingrediente pré-selecionados</Text>
+                <Ionicon name="md-checkmark" size={20} color="#FFF" style={[styles.ingredientIcon, styles.discreetShadow]} />
+                <Text
+                  style={[styles.ingredientName, styles.discreetShadow]}
+                >
+                  Nenhum ingrediente pré-selecionados
+                </Text>
               </View>
             )
             : sandwich.ingredients.map(ingredient => (
               <View key={ingredient.id} style={styles.ingredientContainer}>
-                <Ionicon name="md-checkmark" size={20} color="#FFF" style={styles.ingredientIcon} />
-                <Text style={styles.ingredientName}>{ingredient.name}</Text>
+                <Ionicon name="md-checkmark" size={20} color="#FFF" style={[styles.ingredientIcon, styles.discreetShadow]} />
+                <Text
+                  style={[styles.ingredientName, styles.discreetShadow]}
+                >
+                  {ingredient.name}
+                </Text>
               </View>
             ))
         }

@@ -2,16 +2,19 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   container: {
-    flexDirection: "row",
-    alignItems: "center",
     backgroundColor: "#F44336",
     borderRadius: 6,
-    borderColor: "#C1342A",
-    borderBottomWidth: 4,
     marginVertical: 10,
+    width: 250,
+  },
+  bottomDetail: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderRadius: 6,
+    borderBottomWidth: 4,
+    borderColor: "#C1342A",
     paddingVertical: 10,
     paddingHorizontal: 20,
-    width: 250,
   },
   ingredientInfo: {
     flex: 6,
@@ -41,5 +44,10 @@ export default StyleSheet.create({
     marginVertical: 6,
     fontSize: 14,
     color: "#FFF",
+  },
+  discreetShadow: {
+    textShadowColor: "#000",
+    textShadowRadius: 1,
+    textShadowOffset: { width: 1, height: 1 },
   },
 });
